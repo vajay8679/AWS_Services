@@ -210,3 +210,45 @@ EKS makes it easier to run Kubernetes without needing to be an expert in managin
 
 
 
+
+
+------------------------------------------------------
+
+# What is Amazon EKS?
+
+
+Amazon Elastic Kubernetes Service (Amazon EKS) is a
+managed Kubernetes service that makes it easy for you to
+run Kubernetes on AWS and on-premises
+
+
+Kubernetes is an open-source system for automating
+deployment, scaling, and management of containerized
+applications.
+
+# How to create Kubernetes Cluster & Node Groups in AWS using Managed EKS
+
+1. AWS CLI - https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
+2. Install Kubectl - https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html
+3. Create access key and secret key for cluster creation user - inside user(adminsitrator policy) details page -> secret credentials -> access key -> aws cli
+
+aws configure
+
+4. Create VPC & 2 public subnets - https://ap-south-1.console.aws.amazon.com/vpcconsole/home?region=ap-south-1#CreateVpc:createMode=vpcWithResources - VPC and more 
+
+5. Create a Key pair - EC2 key pair create
+6. Create IAM Role for cluster & attach the permission Policy - role -> use case -> eks cluster -> 
+7. Create another IAM Role for Worker node & attach the permission Policy -> role -> use case -> ec2 -> AmazonEKSWorkerNodePolicy, AmazonEc2ContainerRegistryReadOnly, AmazonEKS_CNI_Policy
+8. Create Security group -> vpc from point 4 -> inboud -> All traffic 
+9. Create the EKS cluster - https://ap-south-1.console.aws.amazon.com/eks/home?region=ap-south-1#/cluster-create -> attach role from point 6 -> select security group -> public
+
+aws eks update-kubeconfig --name cluster_name --region ap-south-1
+
+10. Create the node group and attach to the cluster - IAM from point 7 -> security group select from eks and you created -> key value pair -> enable configure setting -> create -> while creationg if get error (go to inside subnet auto assign ip setting -> enabled) 
+11. Connect to AWS EKS cluster using the kubectl
+
+
+
+# Kubernetes: How to deploy a Simple Game App into Amazon EKS in 10 minutes
+
+https://www.youtube.com/watch?v=wyad99QMKtc
