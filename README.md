@@ -671,7 +671,7 @@ ECR offer both public and private repositories
 
 ![alt text](ECR_Image/ecr_architecure_work.png)
 
-![alt text](ECR_Image/  ecr_dockerhub.png)
+![alt text](ECR_Image/ecr_dockerhub.png)
 
 
 connected to aws cli-
